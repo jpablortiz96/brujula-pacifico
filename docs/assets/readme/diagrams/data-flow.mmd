@@ -1,0 +1,13 @@
+flowchart TD
+  A[datos.gov.co API /resource/id.json] --> B[Scripts de ingesta tsx]
+  B --> C[Paginación y normalización]
+  C --> D[Enriquecimiento DIVIPOLA]
+  D --> E[Clasificación sectorial]
+  E --> F[Validaciones de calidad]
+  F --> G[(Supabase PostgreSQL)]
+  G --> H[Funciones RPC y vistas]
+  H --> I[Módulos web]
+  H --> J[Agente con herramientas]
+  H --> K[Exportador abierto]
+  H --> L[Brief PDF]
+  J --> M[Bitácora institucional]

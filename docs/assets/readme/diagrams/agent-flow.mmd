@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant U as Usuario
+  participant O as Orquestador
+  participant T as Herramientas
+  participant D as Datos reales
+  participant L as Claude
+  participant B as Bitácora
+  U->>O: Pregunta territorial
+  O->>L: Contexto, rol y regla de no inventar cifras
+  L->>O: Selección de herramienta
+  O->>T: Tool call estructurado
+  T->>D: Consulta Supabase o Socrata
+  D-->>T: Evidencia y fuentes
+  T-->>O: Resultado JSON
+  O->>L: Evidencia para razonar
+  L-->>U: Respuesta con fuentes y salvedades
+  O->>B: Consulta, datasets usados y decisión
+  Note over O,L: Web: máximo 5 iteraciones. WhatsApp: máximo 4 por defecto.

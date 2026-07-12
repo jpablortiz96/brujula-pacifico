@@ -1,0 +1,58 @@
+flowchart LR
+  subgraph Usuarios
+    C[Ciudadanía]
+    F[Funcionarios]
+    A[Analistas]
+    O[Organizaciones territoriales]
+  end
+  subgraph Canales
+    Web[Aplicación web]
+    PWA[PWA offline]
+    WA[WhatsApp]
+    CSV[Exportaciones CSV ZIP]
+    PDF[Brief PDF]
+  end
+  subgraph Next[Next.js 16 App Router en Vercel]
+    SC[Server Components]
+    CR[Client Components]
+    API[API Routes Node.js]
+    Q[Capa de consultas]
+    Agent[Orquestador agéntico]
+  end
+  subgraph Servicios
+    DB[(Supabase PostgreSQL)]
+    Socrata[datos.gov.co Socrata]
+    Claude[Anthropic Claude]
+    Twilio[Twilio Sandbox]
+    Chromium[Chromium / Puppeteer]
+  end
+  subgraph Datos
+    SECOP[SECOP II]
+    SISBEN[Sisbén IV]
+    EDU[Educación MEN]
+    VIOL[Medicina Legal]
+    DIV[DIVIPOLA]
+  end
+  C --> Web
+  F --> Web
+  A --> CSV
+  O --> WA
+  Web --> SC
+  Web --> CR
+  PWA --> CR
+  WA --> API
+  CSV --> API
+  PDF --> API
+  API --> Q
+  API --> Agent
+  Q --> DB
+  Agent --> Q
+  Agent --> Socrata
+  Agent --> Claude
+  WA --> Twilio
+  PDF --> Chromium
+  DB --> SECOP
+  DB --> SISBEN
+  DB --> EDU
+  DB --> VIOL
+  DB --> DIV

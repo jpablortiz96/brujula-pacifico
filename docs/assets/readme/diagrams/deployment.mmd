@@ -1,0 +1,11 @@
+flowchart LR
+  GH[GitHub] --> V[Vercel auto-detect Next.js]
+  GH -. pendiente si se activa .github/workflows .-> CI[GitHub Actions]
+  CI -. validaría .-> Lint[lint / typecheck / build]
+  V --> NF[Next.js Functions Node.js]
+  NF --> DB[(Supabase)]
+  NF --> A[Anthropic]
+  NF --> T[Twilio webhook]
+  NF --> C[Chromium para PDF]
+  NF --> S[Socrata datos.gov.co]
+  DB --> Logs[Bitácora y consultas]

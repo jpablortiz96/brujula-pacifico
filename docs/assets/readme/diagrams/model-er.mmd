@@ -1,0 +1,28 @@
+erDiagram
+  municipios ||--o{ secop_contratos : geolocaliza
+  municipios ||--o{ educacion_establecimientos : tiene
+  municipios ||--o{ sisben_personas : agrega
+  municipios ||--o{ medicina_lesiones : registra
+  municipios ||--o{ indicadores : resume
+  municipios ||--o{ anomalias : detecta
+  municipios ||--o{ bitacora : contextualiza
+  whatsapp_sesiones {
+    text telefono PK
+    jsonb historial
+    text municipio_foco
+    timestamptz ultima_actividad
+  }
+  secop_contratos {
+    text id PK
+    text codigo_municipio FK
+    numeric valor_contrato
+    date fecha_firma
+    text sector
+  }
+  bitacora {
+    uuid id PK
+    text actor_rol
+    text consulta
+    text[] datasets_usados
+    jsonb metadata
+  }

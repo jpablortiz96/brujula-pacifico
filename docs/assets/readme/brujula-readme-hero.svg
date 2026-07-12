@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 650" role="img" aria-labelledby="title desc">
+  <title id="title">BRÚJULA - Sistema de inteligencia territorial abierta</title>
+  <desc id="desc">Hero institucional con nodos de datos abiertos conectando SECOP, Sisbén, Educación y Violencia en el Pacífico colombiano.</desc>
+  <rect width="1600" height="650" fill="#F4F2EC"/>
+  <rect x="0" y="0" width="1600" height="650" fill="#0A2540"/>
+  <path d="M0 0h1600v12H0z" fill="#FFCD00"/>
+  <path d="M0 638h1600v12H0z" fill="#CE1126"/>
+
+  <g opacity=".98">
+    <rect x="72" y="72" width="1456" height="506" fill="none" stroke="#F4F2EC" stroke-width="2"/>
+    <rect x="88" y="88" width="1424" height="474" fill="none" stroke="#F4F2EC" stroke-width=".75" opacity=".35"/>
+  </g>
+
+  <g transform="translate(94 96)">
+    <rect x="0" y="0" width="128" height="24" fill="#FFCD00"/>
+    <rect x="128" y="0" width="70" height="24" fill="#0033A0"/>
+    <rect x="198" y="0" width="70" height="24" fill="#CE1126"/>
+  </g>
+
+  <g transform="translate(1020 92)">
+    <path d="M112 21c-34 12-55 36-72 73-19 42-20 91-6 142 10 38 3 71-22 98-8 8-3 22 9 22 62-1 114-20 156-58 37-34 60-81 66-137 4-40-5-76-27-106-22-29-57-45-104-34z" fill="#F4F2EC" opacity=".08" stroke="#F4F2EC" stroke-width="2"/>
+    <path d="M133 36c-22 32-33 69-34 111-1 44 9 85 29 124" fill="none" stroke="#FFCD00" stroke-width="4" stroke-linecap="round"/>
+    <path d="M80 118c34 9 75 8 123-2" fill="none" stroke="#1A8754" stroke-width="4" stroke-linecap="round"/>
+    <path d="M69 210c38 14 84 16 138 5" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g stroke="#F4F2EC" stroke-width="2" opacity=".9">
+    <path d="M970 250 835 270 742 206 640 306 759 404 910 372" fill="none"/>
+    <path d="M742 206 759 404" fill="none" opacity=".5"/>
+    <path d="M835 270 910 372" fill="none" opacity=".5"/>
+    <path d="M640 306 970 250" fill="none" opacity=".25"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">
+    <g transform="translate(930 216)">
+      <circle r="44" fill="#FFCD00"/>
+      <text y="6" text-anchor="middle" fill="#0A2540">SECOP</text>
+    </g>
+    <g transform="translate(813 270)">
+      <circle r="44" fill="#F4F2EC"/>
+      <text y="6" text-anchor="middle" fill="#0A2540">Sisbén</text>
+    </g>
+    <g transform="translate(707 204)">
+      <circle r="44" fill="#1A8754"/>
+      <text y="6" text-anchor="middle" fill="#FFFFFF">Educación</text>
+    </g>
+    <g transform="translate(647 319)">
+      <circle r="44" fill="#CE1126"/>
+      <text y="6" text-anchor="middle" fill="#FFFFFF">Violencia</text>
+    </g>
+    <g transform="translate(777 410)">
+      <circle r="44" fill="#0033A0"/>
+      <text y="6" text-anchor="middle" fill="#FFFFFF">DIVIPOLA</text>
+    </g>
+  </g>
+
+  <g transform="translate(118 172)" font-family="Arial, Helvetica, sans-serif">
+    <text x="0" y="0" fill="#FFCD00" font-size="18" font-weight="700" letter-spacing="3">OPEN DATA · IA · TERRITORIO</text>
+    <text x="0" y="96" fill="#FFFFFF" font-size="122" font-weight="900" letter-spacing="2">BRÚJULA</text>
+    <text x="4" y="148" fill="#FFFFFF" font-size="35" font-weight="700">Sistema de inteligencia territorial abierta</text>
+    <text x="4" y="190" fill="#C8D3DE" font-size="25">Datos.gov.co tiene la información. BRÚJULA tiene el criterio.</text>
+  </g>
+
+  <g transform="translate(122 428)" font-family="Arial, Helvetica, sans-serif">
+    <rect width="546" height="82" fill="#F4F2EC"/>
+    <path d="M0 0h546v8H0z" fill="#FFCD00"/>
+    <text x="28" y="40" fill="#0A2540" font-size="18" font-weight="700">Contratación pública + vulnerabilidad + educación + violencia</text>
+    <text x="28" y="64" fill="#4A5562" font-size="15">Evidencia trazable para decisiones públicas verificables.</text>
+  </g>
+
+  <g transform="translate(1078 430)" font-family="Arial, Helvetica, sans-serif">
+    <rect width="336" height="72" fill="none" stroke="#FFCD00" stroke-width="2"/>
+    <text x="168" y="30" text-anchor="middle" fill="#FFCD00" font-size="18" font-weight="800">Pacífico colombiano</text>
+    <text x="168" y="54" text-anchor="middle" fill="#F4F2EC" font-size="15">178 municipios · datos abiertos · trazabilidad</text>
+  </g>
+</svg>

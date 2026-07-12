@@ -1,0 +1,121 @@
+{
+  "baseUrl": "https://brujula-pacifico.vercel.app",
+  "capturedAt": "2026-07-12T01:20:18.891Z",
+  "tool": "puppeteer 25.1.0",
+  "results": [
+    {
+      "file": "01-landing.webp",
+      "url": "https://brujula-pacifico.vercel.app/",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 9099,
+      "status": 200
+    },
+    {
+      "file": "02-dashboard-territorial.webp",
+      "url": "https://brujula-pacifico.vercel.app/dashboard",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 29831,
+      "status": 200
+    },
+    {
+      "file": "03-agente-ia.webp",
+      "url": "https://brujula-pacifico.vercel.app/agente",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 11755,
+      "notes": "No envía consultas para evitar consumo de IA.",
+      "status": 200
+    },
+    {
+      "file": "04-zonas-olvidadas.webp",
+      "url": "https://brujula-pacifico.vercel.app/zonas-olvidadas",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 37807,
+      "status": 200
+    },
+    {
+      "file": "05-mi-plata.webp",
+      "url": "https://brujula-pacifico.vercel.app/mi-plata",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 26610,
+      "status": 200
+    },
+    {
+      "file": "06-comparador.webp",
+      "url": "https://brujula-pacifico.vercel.app/comparador",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 18008,
+      "status": 200
+    },
+    {
+      "file": "07-simulador.webp",
+      "url": "https://brujula-pacifico.vercel.app/simulador",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 18134,
+      "status": 200
+    },
+    {
+      "file": "08-radar-sectorial.webp",
+      "url": "https://brujula-pacifico.vercel.app/radar",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 10743,
+      "status": 200
+    },
+    {
+      "file": "09-brief-ejecutivo.webp",
+      "url": "https://brujula-pacifico.vercel.app/brief",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 21906,
+      "notes": "Captura la interfaz; no genera PDF.",
+      "status": 200
+    },
+    {
+      "file": "10-bitacora.webp",
+      "url": "https://brujula-pacifico.vercel.app/bitacora",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 9094,
+      "status": 200
+    },
+    {
+      "file": "11-whatsapp.webp",
+      "url": "https://brujula-pacifico.vercel.app/whatsapp",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 9952,
+      "status": 200
+    },
+    {
+      "file": "12-offline-pwa.webp",
+      "url": "https://brujula-pacifico.vercel.app/offline",
+      "viewport": "1600x1000@1",
+      "ok": true,
+      "elapsedMs": 9652,
+      "status": 200
+    },
+    {
+      "file": "13-mobile-landing.webp",
+      "url": "https://brujula-pacifico.vercel.app/",
+      "viewport": "390x844@2",
+      "ok": true,
+      "elapsedMs": 6694,
+      "status": 304
+    },
+    {
+      "file": "14-mobile-mi-plata.webp",
+      "url": "https://brujula-pacifico.vercel.app/mi-plata",
+      "viewport": "390x844@2",
+      "ok": true,
+      "elapsedMs": 18769,
+      "status": 304
+    }
+  ]
+}

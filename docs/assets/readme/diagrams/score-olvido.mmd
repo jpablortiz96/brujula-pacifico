@@ -1,0 +1,12 @@
+flowchart LR
+  A[Baja inversión por persona vulnerable] --> S[Score de olvido]
+  B[Vulnerabilidad Sisbén con factor fex] --> S
+  C[Violencia relativa] --> S
+  G{Muestra Sisbén >= 30} -->|sí| S
+  G -->|no| V[Requiere verificación]
+  Q[Calidad SECOP] --> S
+  S --> R[Ranking territorial]
+  Q --> Q1[cero_verificado]
+  Q --> Q2[posible_subregistro]
+  Q --> Q3[ok]
+  S -.-> N[No es declaración administrativa ni inferencia causal]
