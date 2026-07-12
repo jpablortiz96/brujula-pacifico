@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/readme/brujula-readme-hero.svg" alt="BRÚJULA, sistema de inteligencia territorial abierta del Pacífico colombiano" width="100%" />
+  <img src="docs/assets/readme/brujula-readme-hero.svg" alt="BRÚJULA, sistema de inteligencia territorial abierta que conecta SECOP, Sisbén, educación y DIVIPOLA para analizar el Pacífico colombiano." width="100%" />
 </p>
 
 <h1 align="center">BRÚJULA</h1>
@@ -855,7 +855,7 @@ Configuración:
 | Root Directory | raíz del repositorio |
 | Build Command | `npm run build` |
 | Install Command | `npm ci` |
-| Output Directory | `.next` automático |
+| Output Directory | Automático — dejar vacío |
 | Node.js | `22.x` |
 
 Rutas con runtime Node.js:
@@ -868,15 +868,18 @@ Rutas con runtime Node.js:
 
 ```mermaid
 flowchart LR
-  GH[GitHub] --> V[Vercel auto-detect Next.js]
-  GH -. pendiente si se activa .github/workflows .-> CI[GitHub Actions]
-  CI -. validaría .-> Checks[lint / typecheck / build]
-  V --> NF[Next.js Functions Node.js]
-  NF --> DB[(Supabase)]
-  NF --> A[Anthropic]
-  NF --> T[Twilio webhook]
-  NF --> C[Chromium para PDF]
-  NF --> S[Socrata datos.gov.co]
+  GH["GitHub"] --> V["Vercel<br/>Detección automática de Next.js"]
+
+  GH -.-> CI["GitHub Actions<br/>Pendiente de activar"]
+  CI -.-> Checks["Validaciones<br/>lint · typecheck · build"]
+
+  V --> NF["Next.js Functions<br/>Runtime Node.js"]
+
+  NF --> DB[("Supabase PostgreSQL")]
+  NF --> A["Anthropic Claude"]
+  NF --> T["Twilio<br/>Webhook de WhatsApp"]
+  NF --> C["Chromium + Puppeteer<br/>Generación de PDF"]
+  NF --> S["Socrata<br/>datos.gov.co"]
 ```
 
 Twilio webhook:

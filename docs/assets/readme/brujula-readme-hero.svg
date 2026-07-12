@@ -1,76 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 650" role="img" aria-labelledby="title desc">
-  <title id="title">BRÚJULA - Sistema de inteligencia territorial abierta</title>
-  <desc id="desc">Hero institucional con nodos de datos abiertos conectando SECOP, Sisbén, Educación y Violencia en el Pacífico colombiano.</desc>
-  <rect width="1600" height="650" fill="#F4F2EC"/>
-  <rect x="0" y="0" width="1600" height="650" fill="#0A2540"/>
-  <path d="M0 0h1600v12H0z" fill="#FFCD00"/>
-  <path d="M0 638h1600v12H0z" fill="#CE1126"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 735" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc">
+  <title id="title">BR&#218;JULA - sistema de inteligencia territorial abierta</title>
+  <desc id="desc">Hero institucional de BR&#218;JULA que conecta SECOP, Sisb&#233;n, Educaci&#243;n, Violencia y DIVIPOLA con una silueta territorial del Pac&#237;fico colombiano.</desc>
+  <rect width="1600" height="735" fill="#F4F2EC"/>
+  <rect x="0" y="0" width="1600" height="735" fill="#0A2540"/>
+  <path d="M0 0h1600v14H0z" fill="#FFCD00"/>
+  <path d="M0 721h1600v14H0z" fill="#CE1126"/>
 
   <g opacity=".98">
-    <rect x="72" y="72" width="1456" height="506" fill="none" stroke="#F4F2EC" stroke-width="2"/>
-    <rect x="88" y="88" width="1424" height="474" fill="none" stroke="#F4F2EC" stroke-width=".75" opacity=".35"/>
+    <rect x="72" y="72" width="1456" height="591" fill="none" stroke="#F4F2EC" stroke-width="2"/>
+    <rect x="94" y="94" width="1412" height="547" fill="none" stroke="#F4F2EC" stroke-width=".75" opacity=".35"/>
   </g>
 
-  <g transform="translate(94 96)">
-    <rect x="0" y="0" width="128" height="24" fill="#FFCD00"/>
-    <rect x="128" y="0" width="70" height="24" fill="#0033A0"/>
-    <rect x="198" y="0" width="70" height="24" fill="#CE1126"/>
+  <g transform="translate(116 104)">
+    <rect x="0" y="0" width="140" height="24" fill="#FFCD00"/>
+    <rect x="140" y="0" width="78" height="24" fill="#0033A0"/>
+    <rect x="218" y="0" width="78" height="24" fill="#CE1126"/>
   </g>
 
-  <g transform="translate(1020 92)">
-    <path d="M112 21c-34 12-55 36-72 73-19 42-20 91-6 142 10 38 3 71-22 98-8 8-3 22 9 22 62-1 114-20 156-58 37-34 60-81 66-137 4-40-5-76-27-106-22-29-57-45-104-34z" fill="#F4F2EC" opacity=".08" stroke="#F4F2EC" stroke-width="2"/>
-    <path d="M133 36c-22 32-33 69-34 111-1 44 9 85 29 124" fill="none" stroke="#FFCD00" stroke-width="4" stroke-linecap="round"/>
-    <path d="M80 118c34 9 75 8 123-2" fill="none" stroke="#1A8754" stroke-width="4" stroke-linecap="round"/>
-    <path d="M69 210c38 14 84 16 138 5" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+  <g transform="translate(1126 122)">
+    <path d="M118 24c-34 12-58 38-75 76-20 45-20 95-6 149 11 39 3 76-23 105-8 9-3 23 10 23 64-1 118-21 162-61 39-36 63-86 69-145 4-42-6-80-29-112-23-31-60-48-108-35z" fill="#F4F2EC" opacity=".08" stroke="#F4F2EC" stroke-width="2"/>
+    <path d="M141 42c-23 34-35 73-36 118-1 47 10 91 31 132" fill="none" stroke="#FFCD00" stroke-width="4" stroke-linecap="round"/>
+    <path d="M82 130c36 10 80 9 131-2" fill="none" stroke="#1A8754" stroke-width="4" stroke-linecap="round"/>
+    <path d="M70 226c41 15 90 17 147 5" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
   </g>
 
   <g stroke="#F4F2EC" stroke-width="2" opacity=".9">
-    <path d="M970 250 835 270 742 206 640 306 759 404 910 372" fill="none"/>
-    <path d="M742 206 759 404" fill="none" opacity=".5"/>
-    <path d="M835 270 910 372" fill="none" opacity=".5"/>
-    <path d="M640 306 970 250" fill="none" opacity=".25"/>
+    <path d="M805 194 850 318 790 454 968 410 945 236 1064 326" fill="none"/>
+    <path d="M805 194 945 236" fill="none" opacity=".55"/>
+    <path d="M850 318 968 410" fill="none" opacity=".55"/>
+    <path d="M790 454 850 318 1064 326" fill="none" opacity=".3"/>
+    <path d="M1064 326 1118 315" fill="none" opacity=".7"/>
   </g>
 
-  <g font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">
-    <g transform="translate(930 216)">
-      <circle r="44" fill="#FFCD00"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">
+    <g transform="translate(805 194)">
+      <circle r="40" fill="#1A8754"/>
+      <text y="6" text-anchor="middle" fill="#FFFFFF">Educaci&#243;n</text>
+    </g>
+    <g transform="translate(945 236)">
+      <circle r="40" fill="#FFCD00"/>
       <text y="6" text-anchor="middle" fill="#0A2540">SECOP</text>
     </g>
-    <g transform="translate(813 270)">
-      <circle r="44" fill="#F4F2EC"/>
-      <text y="6" text-anchor="middle" fill="#0A2540">Sisbén</text>
+    <g transform="translate(850 318)">
+      <circle r="40" fill="#F4F2EC"/>
+      <text y="6" text-anchor="middle" fill="#0A2540">Sisb&#233;n</text>
     </g>
-    <g transform="translate(707 204)">
-      <circle r="44" fill="#1A8754"/>
-      <text y="6" text-anchor="middle" fill="#FFFFFF">Educación</text>
-    </g>
-    <g transform="translate(647 319)">
-      <circle r="44" fill="#CE1126"/>
+    <g transform="translate(968 410)">
+      <circle r="40" fill="#CE1126"/>
       <text y="6" text-anchor="middle" fill="#FFFFFF">Violencia</text>
     </g>
-    <g transform="translate(777 410)">
-      <circle r="44" fill="#0033A0"/>
+    <g transform="translate(790 454)">
+      <circle r="40" fill="#0033A0"/>
       <text y="6" text-anchor="middle" fill="#FFFFFF">DIVIPOLA</text>
     </g>
   </g>
 
-  <g transform="translate(118 172)" font-family="Arial, Helvetica, sans-serif">
-    <text x="0" y="0" fill="#FFCD00" font-size="18" font-weight="700" letter-spacing="3">OPEN DATA · IA · TERRITORIO</text>
-    <text x="0" y="96" fill="#FFFFFF" font-size="122" font-weight="900" letter-spacing="2">BRÚJULA</text>
-    <text x="4" y="148" fill="#FFFFFF" font-size="35" font-weight="700">Sistema de inteligencia territorial abierta</text>
-    <text x="4" y="190" fill="#C8D3DE" font-size="25">Datos.gov.co tiene la información. BRÚJULA tiene el criterio.</text>
+  <g transform="translate(120 154)" font-family="Arial, Helvetica, sans-serif">
+    <text x="0" y="0" fill="#FFCD00" font-size="18" font-weight="700" letter-spacing="4">OPEN DATA &#183; IA &#183; TERRITORIO</text>
+    <text x="0" y="112" fill="#FFFFFF" font-size="112" font-weight="900" letter-spacing="4">
+      <tspan>BR</tspan><tspan fill="#FFCD00">&#218;</tspan><tspan>JULA</tspan>
+    </text>
+    <text x="4" y="174" fill="#FFFFFF" font-size="32" font-weight="700">Sistema de inteligencia territorial abierta</text>
+    <text x="4" y="218" fill="#C8D3DE" font-size="24">Datos.gov.co tiene la informaci&#243;n.</text>
+    <text x="4" y="250" fill="#C8D3DE" font-size="24"><tspan fill="#FFFFFF" font-weight="700">BR&#218;JULA</tspan> tiene el criterio.</text>
   </g>
 
-  <g transform="translate(122 428)" font-family="Arial, Helvetica, sans-serif">
-    <rect width="546" height="82" fill="#F4F2EC"/>
-    <path d="M0 0h546v8H0z" fill="#FFCD00"/>
-    <text x="28" y="40" fill="#0A2540" font-size="18" font-weight="700">Contratación pública + vulnerabilidad + educación + violencia</text>
-    <text x="28" y="64" fill="#4A5562" font-size="15">Evidencia trazable para decisiones públicas verificables.</text>
+  <g transform="translate(120 508)" font-family="Arial, Helvetica, sans-serif">
+    <rect width="520" height="120" fill="#F4F2EC"/>
+    <path d="M0 0h520v8H0z" fill="#FFCD00"/>
+    <text x="32" y="42" fill="#0A2540" font-size="19" font-weight="700">Contrataci&#243;n p&#250;blica + vulnerabilidad</text>
+    <text x="32" y="69" fill="#0A2540" font-size="19" font-weight="700">educaci&#243;n + violencia</text>
+    <text x="32" y="98" fill="#4A5562" font-size="15">Evidencia trazable para decisiones p&#250;blicas verificables.</text>
   </g>
 
-  <g transform="translate(1078 430)" font-family="Arial, Helvetica, sans-serif">
-    <rect width="336" height="72" fill="none" stroke="#FFCD00" stroke-width="2"/>
-    <text x="168" y="30" text-anchor="middle" fill="#FFCD00" font-size="18" font-weight="800">Pacífico colombiano</text>
-    <text x="168" y="54" text-anchor="middle" fill="#F4F2EC" font-size="15">178 municipios · datos abiertos · trazabilidad</text>
+  <g transform="translate(1078 534)" font-family="Arial, Helvetica, sans-serif">
+    <rect width="370" height="88" fill="none" stroke="#FFCD00" stroke-width="2"/>
+    <text x="185" y="37" text-anchor="middle" fill="#FFCD00" font-size="20" font-weight="800">Pac&#237;fico colombiano</text>
+    <text x="185" y="64" text-anchor="middle" fill="#F4F2EC" font-size="16">178 municipios &#183; datos abiertos &#183; trazabilidad</text>
   </g>
 </svg>
