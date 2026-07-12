@@ -85,14 +85,48 @@ archivos o procesar despues de responder:
 
 ## Puppeteer, Chromium y Vercel Functions
 
+- Versiones fijadas para compatibilidad con Chrome/Chromium 149:
+  `@sparticuz/chromium@149.0.0`, `puppeteer-core@25.1.0` y
+  `puppeteer@25.1.0`.
 - En produccion se usa `puppeteer-core` con `@sparticuz/chromium`.
 - En local se usa `puppeteer` como dependencia de desarrollo para obtener el
   Chromium local.
 - `next.config.ts` mantiene `serverExternalPackages` para
   `@sparticuz/chromium`, `puppeteer-core` y `puppeteer`.
+- `next.config.ts` incluye `outputFileTracingIncludes` limitado a `/api/brief`
+  para empaquetar `node_modules/@sparticuz/chromium/bin/**` dentro del trace de
+  la funcion.
 - La generacion de PDF escribe la respuesta en memoria y no depende de archivos
   permanentes en el filesystem de Vercel.
 - La generacion ZIP usa `JSZip` en memoria y devuelve el `ArrayBuffer`.
+
+## Prueba de /api/brief
+
+Despues de desplegar, probar:
+
+```bash
+curl -i "https://<dominio-vercel>/api/brief?divipola=76001&tipo=municipio" -o brujula-brief-cali.pdf
+```
+
+Validar:
+
+- HTTP `200`.
+- `Content-Type: application/pdf`.
+- `Content-Disposition: attachment; filename="brujula-brief-cali.pdf"`.
+- El archivo inicia con `%PDF`.
+- El tamano es mayor a 10 KB.
+- El PDF tiene maximo dos paginas y el footer no invade el contenido.
+
+Si la respuesta es JSON de error, contiene:
+
+- `error`: mensaje legible.
+- `code`: `PDF_BROWSER_LAUNCH_FAILED` o `PDF_GENERATION_FAILED`.
+- `requestId`: identificador para buscar la ejecucion en logs.
+
+En Vercel, abrir **Project > Logs > Runtime Logs**, filtrar por la ruta
+`/api/brief` o por el `requestId` y revisar las etapas:
+`start`, `data_ready`, `html_ready`, `chromium_path_ready`, `browser_ready`,
+`pdf_ready`, `complete` o `error`.
 
 ## Webhook de Twilio
 

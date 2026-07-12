@@ -1,29 +1,58 @@
 import chromium from "@sparticuz/chromium";
 import puppeteerCore, { type Browser } from "puppeteer-core";
 
-/**
- * Lanza un browser headless que funciona tanto en local como en Vercel
- * serverless. En producción usa @sparticuz/chromium (binario comprimido);
- * en local usa el Chromium que trae el dev dependency `puppeteer`.
- */
-export async function getBrowser(): Promise<Browser> {
-  const isProd = process.env.NODE_ENV === "production" || !!process.env.VERCEL;
+const DEFAULT_VIEWPORT = {
+  width: 1240,
+  height: 1754,
+  deviceScaleFactor: 1,
+};
 
-  if (isProd) {
-    return puppeteerCore.launch({
+function shouldUseServerlessChromium(): boolean {
+  return (
+    !!process.env.VERCEL ||
+    (process.env.NODE_ENV === "production" && process.platform === "linux")
+  );
+}
+
+/**
+ * Launches a headless browser that works locally and in Vercel Functions.
+ * Production uses the bundled @sparticuz/chromium binary; local development
+ * uses the browser resolved by the full puppeteer package.
+ */
+export async function getBrowser(resolvedExecutablePath?: string): Promise<Browser> {
+  if (shouldUseServerlessChromium()) {
+    const executablePath =
+      resolvedExecutablePath ?? (await getChromiumExecutablePath());
+    if (!executablePath) {
+      throw new Error("No se pudo resolver el binario de Chromium");
+    }
+
+    chromium.setGraphicsMode = false;
+    const headless = "shell" as const;
+    const args = await puppeteerCore.defaultArgs({
       args: chromium.args,
-      executablePath: await chromium.executablePath(),
-      headless: true,
-      defaultViewport: { width: 1240, height: 1754 }, // A4 @ ~150dpi
+      headless,
+    });
+
+    return puppeteerCore.launch({
+      args,
+      executablePath,
+      headless,
+      defaultViewport: DEFAULT_VIEWPORT,
+      timeout: 45000,
     });
   }
 
-  // Local: puppeteer completo trae su propio Chromium.
   const puppeteer = await import("puppeteer");
   const browser = await puppeteer.launch({
     headless: true,
-    defaultViewport: { width: 1240, height: 1754 },
+    defaultViewport: DEFAULT_VIEWPORT,
+    timeout: 45000,
   });
-  // El Browser de puppeteer es estructuralmente compatible con el de core.
+
   return browser as unknown as Browser;
+}
+
+export async function getChromiumExecutablePath(): Promise<string | undefined> {
+  return shouldUseServerlessChromium() ? chromium.executablePath() : undefined;
 }

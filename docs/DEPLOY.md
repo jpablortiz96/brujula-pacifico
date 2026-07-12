@@ -47,8 +47,15 @@ npm run ingest:secop      # contratos SECOP II
 
 - **Export PDF.** Usa `@sparticuz/chromium` + `puppeteer-core`, declarados en
   `serverExternalPackages` de `next.config.ts` para que el bundler no los empaquete.
+  Versiones fijadas: `@sparticuz/chromium@149.0.0`,
+  `puppeteer-core@25.1.0` y `puppeteer@25.1.0`. La ruta `/api/brief` incluye
+  `node_modules/@sparticuz/chromium/bin/**` en el trace de la funcion.
 - **Funciones largas.** Las rutas `api/agent/chat`, `api/brief`, `api/export` y
   `api/whatsapp/webhook` declaran `export const maxDuration = 60` (segundos).
+- **Debug PDF.** Si `/api/brief` devuelve JSON de error, copia el `requestId` y
+  buscalo en **Vercel > Project > Logs > Runtime Logs**. Las etapas esperadas
+  son `start`, `data_ready`, `html_ready`, `chromium_path_ready`,
+  `browser_ready`, `pdf_ready` y `complete`.
 - **WhatsApp (opcional).** Configurar el webhook de Twilio apuntando a
   `https://<tu-dominio>/api/whatsapp/webhook`.
 
@@ -59,4 +66,6 @@ npm run ingest:secop      # contratos SECOP II
 - [ ] Scripts SQL de `supabase/` ejecutados
 - [ ] Seed + ingesta corridos
 - [ ] `npm run build` pasa localmente
+- [ ] `curl -i https://<tu-dominio>/api/brief?divipola=76001\\&tipo=municipio`
+      devuelve `application/pdf`, `%PDF` y un archivo mayor de 10 KB
 - [ ] `Root Directory` = raíz del repositorio en Vercel
