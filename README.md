@@ -139,7 +139,7 @@ La regla central es simple: **la IA no inventa cifras**. Cuando el copiloto resp
 
 ## Demo Visual
 
-No hay un video demo versionado en el repositorio. Mientras exista esa pieza pendiente, la demo principal es el deployment público y las capturas reproducibles:
+El video demo no aplica para esta entrega. La demostración principal es el deployment público y las capturas reproducibles generadas contra producción:
 
 <p align="center">
   <a href="https://brujula-pacifico.vercel.app">
@@ -667,7 +667,7 @@ Checklist de entregables:
 | Impacto | Listo | módulos y hallazgos |
 | Publicación en datos.gov.co/usos | Pendiente | No se encontró URL real en el repo |
 | Presentación | Pendiente | No hay deck versionado |
-| Video demo | Pendiente | No hay video versionado |
+| Video demo | No aplica | La evidencia visual son demo en producción y capturas reproducibles |
 
 ## Recorrido para Jurados
 
@@ -939,7 +939,7 @@ En validación:
 Siguiente:
 
 - workflow CI real en GitHub Actions;
-- video demo público;
+- checklist público de demo guiada dentro del README;
 - publicación en datos.gov.co/usos si el concurso lo exige;
 - pruebas automatizadas de humo para rutas críticas;
 - tablero de calidad de datos por fuente.
