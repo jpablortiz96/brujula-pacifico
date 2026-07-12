@@ -4,7 +4,7 @@ BRÚJULA se despliega en **Vercel** (aplicación) + **Supabase** (base de datos)
 
 ## Requisitos
 
-- Node.js 20+
+- Node.js 22.x
 - Cuenta de Supabase (proyecto PostgreSQL)
 - API key de Anthropic
 - (Opcional) Cuenta Twilio para el canal WhatsApp
@@ -33,7 +33,9 @@ npm run ingest:secop      # contratos SECOP II
 ## 3. Vercel
 
 1. Importar el repositorio en [vercel.com](https://vercel.com).
-2. **Root Directory:** `brujula` (la app vive en esa subcarpeta).
+2. **Root Directory:** raíz del repositorio (dejar vacío / `.`). No usar una
+   subcarpeta `brujula`: `package.json`, `app/` y `next.config.ts` están en la
+   raíz del repositorio.
 3. Framework preset: **Next.js** (build `next build`, autodetectado).
 4. Configurar las **variables de entorno** (mismas que `.env.example`):
    `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
@@ -57,4 +59,4 @@ npm run ingest:secop      # contratos SECOP II
 - [ ] Scripts SQL de `supabase/` ejecutados
 - [ ] Seed + ingesta corridos
 - [ ] `npm run build` pasa localmente
-- [ ] `Root Directory` = `brujula` en Vercel
+- [ ] `Root Directory` = raíz del repositorio en Vercel

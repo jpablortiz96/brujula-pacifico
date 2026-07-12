@@ -64,7 +64,7 @@ geolocalización), sobre 4 datasets base + el catálogo vivo de datos.gov.co.
 ```bash
 # 1. Clonar
 git clone https://github.com/jpablortiz96/brujula-pacifico.git
-cd brujula-pacifico/brujula
+cd brujula-pacifico
 
 # 2. Dependencias
 npm install
