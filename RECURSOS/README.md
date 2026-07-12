@@ -1,11 +1,11 @@
 # Recursos
 
-En el checkout principal se detectaron recursos locales no versionados:
+Este directorio contiene recursos de apoyo para la revision publica de BRUJULA.
 
 | Archivo | Proposito | Formato | Fecha observada | Estado | Uso recomendado |
 |---|---|---|---|---|---|
-| `Portada_Brujula.png` | Portada visual | PNG | 2026-07-11 | local no versionado | Presentacion / entrega |
-| `Presentacion_Brujula.pdf` | Presentacion para jurados | PDF | 2026-07-11 | local no versionado | Sustentacion |
+| `Portada_Brujula.png` | Portada visual | PNG | 2026-07-11 | versionado | Presentacion / entrega |
+| `Presentacion_Brujula.pdf` | Presentacion para jurados | PDF | 2026-07-11 | versionado | Sustentacion |
 
-Este branch solo agrega la guia del directorio. No copia, comprime ni modifica archivos visuales locales para evitar cambios destructivos o duplicacion sin revision.
+Los archivos se conservan en su formato original. No contienen credenciales ni datos sensibles.
 
