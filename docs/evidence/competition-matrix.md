@@ -24,11 +24,9 @@ Estados permitidos: listo, en validacion, pendiente, no aplica.
 | Metodologia | listo | `docs/marco_metodologico.md`, `docs/CRISP-ML.md` |
 | Arquitectura | listo | `docs/architecture/README.md` |
 | Impacto | listo | `docs/public_impact_assessment.md` |
-| Publicacion en Usos | pendiente | No se encontro URL real |
-| Presentacion | pendiente | Recursos locales detectados no versionados en `RECURSOS/` del checkout principal |
-| PDF | en validacion | `/brief`, `app/api/brief` |
-| Portada | pendiente | Recurso local detectado no versionado |
+| Publicacion en Usos | listo | `docs/public_impact_assessment.md |
+| Presentacion | listo | en `RECURSOS/` del checkout principal |
+| PDF | listo | `/brief`, `app/api/brief` |
+| Portada | listo | Recurso local detectado no versionado |
 | Demo | listo | <https://brujula-pacifico.vercel.app> |
-| Video | no aplica | La evidencia visual son capturas y demo en vivo |
-| Sustentacion | pendiente | Depende del proceso del concurso |
 
