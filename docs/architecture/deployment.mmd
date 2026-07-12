@@ -1,0 +1,11 @@
+flowchart LR
+  GH[GitHub] --> V[Vercel]
+  V --> Build[npm ci + npm run build]
+  V --> FN[Next.js Functions Node.js]
+  FN --> DB[(Supabase)]
+  FN --> Anthropic[Anthropic]
+  FN --> Twilio[Twilio]
+  FN --> Chromium[Chromium/Puppeteer]
+  FN --> Socrata[datos.gov.co]
+  GH -. pendiente .-> CI[GitHub Actions no versionado]
+

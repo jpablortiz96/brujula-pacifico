@@ -1,0 +1,2 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"medicina_lesiones","type":"object","properties":{"id":{"type":"string"},"codigo_municipio":{"type":["string","null"]},"año_hecho":{"type":["string","null"]},"manera":{"type":["string","null"]},"zona":{"type":["string","null"]},"mecanismo":{"type":["string","null"]}},"required":["id"]}
+

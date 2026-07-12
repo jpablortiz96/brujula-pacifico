@@ -12,6 +12,12 @@
 <p align="center">
   <a href="https://brujula-pacifico.vercel.app"><strong>Demo en producción</strong></a>
   ·
+  <a href="EVALUACION.md"><strong>Guía para jurados</strong></a>
+  ·
+  <a href="docs/evidence/competition-matrix.md"><strong>Matriz de evidencias</strong></a>
+  ·
+  <a href="docs/reproducibilidad.md"><strong>Reproducir</strong></a>
+  ·
   <a href="docs/ARQUITECTURA.md"><strong>Arquitectura</strong></a>
   ·
   <a href="docs/CRISP-ML.md"><strong>Metodología</strong></a>
@@ -19,6 +25,8 @@
   <a href="docs/DATOS.md"><strong>Fuentes</strong></a>
   ·
   <a href="docs/DEPLOY.md"><strong>Deploy</strong></a>
+  ·
+  <a href="RECURSOS/README.md"><strong>Presentación</strong></a>
 </p>
 
 <p align="center">

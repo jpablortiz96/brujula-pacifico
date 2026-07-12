@@ -1,0 +1,26 @@
+erDiagram
+  municipios ||--o{ secop_contratos : contiene
+  municipios ||--o{ educacion_establecimientos : contiene
+  municipios ||--o{ sisben_personas : agrega
+  municipios ||--o{ medicina_lesiones : contiene
+  municipios ||--o{ bitacora : contextualiza
+  municipios {
+    text divipola PK
+    text nombre
+    text departamento
+    numeric sisben_pob_vulnerable
+  }
+  secop_contratos {
+    text id PK
+    text codigo_municipio FK
+    numeric valor_contrato
+    date fecha_firma
+    text sector_inferido
+  }
+  bitacora {
+    uuid id PK
+    text consulta
+    text[] datasets_usados
+    jsonb metadata
+  }
+

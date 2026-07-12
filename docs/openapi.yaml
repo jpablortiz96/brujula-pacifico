@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: BRUJULA API
+  version: 0.4.0
+  description: Especificacion de referencia parcial para rutas reales de app/api. No reemplaza el codigo fuente.
+servers:
+  - url: https://brujula-pacifico.vercel.app
+paths:
+  /api/dashboard/kpis:
+    get:
+      summary: KPIs de contratacion
+      parameters:
+        - in: query
+          name: departamento
+          schema: { type: string }
+        - in: query
+          name: fechaInicio
+          schema: { type: string, format: date }
+        - in: query
+          name: fechaFin
+          schema: { type: string, format: date }
+      responses:
+        "200": { description: KPIs agregados }
+  /api/zonas:
+    get:
+      summary: Ranking de zonas olvidadas
+      responses:
+        "200": { description: Zonas y municipios que requieren verificacion }
+  /api/comparador:
+    get:
+      summary: Lista o comparacion de municipios
+      parameters:
+        - in: query
+          name: a
+          schema: { type: string }
+        - in: query
+          name: b
+          schema: { type: string }
+      responses:
+        "200": { description: Lista o comparacion }
+  /api/sectores:
+    get:
+      summary: Gasto por sector o cruce sectorial
+      parameters:
+        - in: query
+          name: divipola
+          schema: { type: string }
+        - in: query
+          name: sector
+          schema: { type: string }
+      responses:
+        "200": { description: Datos sectoriales }
+  /api/simulador:
+    get:
+      summary: Escenario de simulacion
+      parameters:
+        - in: query
+          name: divipola
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Escenario de referencia }
+  /api/brief:
+    get:
+      summary: Genera PDF de brief
+      parameters:
+        - in: query
+          name: divipola
+          required: true
+          schema: { type: string }
+        - in: query
+          name: tipo
+          schema: { type: string, enum: [municipio, zona_olvidada] }
+      responses:
+        "200": { description: PDF, content: { application/pdf: {} } }
+        "500": { description: Error con requestId }
+  /api/agent/chat:
+    post:
+      summary: Chat territorial SSE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                messages: { type: array }
+                rol: { type: string }
+      responses:
+        "200": { description: text/event-stream }
+  /api/whatsapp/webhook:
+    post:
+      summary: Webhook Twilio WhatsApp
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+      responses:
+        "200": { description: TwiML vacio }
+

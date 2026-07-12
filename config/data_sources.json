@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {"id": "jbjy-vk9h", "name": "SECOP II", "type": "socrata", "table": "secop_contratos"},
+    {"id": "hq2v-5umk", "name": "Sisben IV", "type": "socrata", "table": "sisben_personas"},
+    {"id": "cfw5-qzt5", "name": "Establecimientos educativos", "type": "socrata", "table": "educacion_establecimientos"},
+    {"id": "2kpj-cktv", "name": "Lesiones fatales", "type": "socrata", "table": "medicina_lesiones"},
+    {"id": "DIVIPOLA", "name": "Catalogo territorial DANE", "type": "reference", "table": "municipios"}
+  ]
+}

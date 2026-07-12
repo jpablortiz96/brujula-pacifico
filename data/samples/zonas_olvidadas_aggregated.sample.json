@@ -1,0 +1,16 @@
+[
+  {
+    "tipo": "muestra_agregada_publica",
+    "municipio": "Argelia",
+    "departamento": "Cauca",
+    "divipola": "19050",
+    "contratos": 9,
+    "valor_secop_cop": 888745168,
+    "pct_vulnerable": 93.4,
+    "homicidios": 55,
+    "inversion_per_vulnerable": 39006,
+    "score_olvido": 0.949,
+    "calidad_dato_secop": "ok",
+    "nota": "Ejemplo agregado sin microdatos personales."
+  }
+]

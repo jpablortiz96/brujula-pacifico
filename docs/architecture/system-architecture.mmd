@@ -1,0 +1,14 @@
+flowchart LR
+  U[Ciudadania / funcionarios / analistas] --> C[Web / PWA / WhatsApp / PDF / Export]
+  C --> N[Next.js 16 App Router]
+  N --> API[Route Handlers Node.js]
+  API --> Q[lib/queries]
+  API --> A[lib/agent]
+  Q --> DB[(Supabase PostgreSQL)]
+  A --> DB
+  A --> S[Socrata datos.gov.co]
+  A --> L[Anthropic Claude]
+  API --> T[Twilio]
+  API --> P[Puppeteer + Chromium]
+  DB --> R[RPC SQL y tablas]
+

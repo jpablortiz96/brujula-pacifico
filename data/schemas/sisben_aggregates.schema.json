@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"sisben_aggregates","type":"object","properties":{"codigo_municipio":{"type":"string"},"grupo":{"type":["string","null"]},"zona":{"type":["string","null"]},"fex_sum":{"type":["number","null"]},"registros":{"type":"integer"},"poblacion_vulnerable_estimada":{"type":["number","null"]}},"required":["codigo_municipio"]}

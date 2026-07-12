@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant U as Usuario
+  participant API as /api/agent/chat
+  participant L as Claude
+  participant T as Herramienta
+  participant D as Supabase/Socrata
+  participant B as Bitacora
+  U->>API: pregunta
+  API->>L: prompt + rol + tools
+  L->>API: tool_use
+  API->>T: executeTool
+  T->>D: consulta real
+  D-->>T: evidencia JSON
+  T-->>API: resultado
+  API->>L: tool_result
+  L-->>U: respuesta SSE con fuentes
+  API->>B: registro best-effort
+

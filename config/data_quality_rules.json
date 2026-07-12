@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {"id": "score_range", "description": "score_olvido debe estar entre 0 y 1"},
+    {"id": "sisben_gate", "description": "rankear solo municipios con muestra Sisben >= 30"},
+    {"id": "fex_positive", "description": "factor fex debe ser numerico y no negativo"},
+    {"id": "divipola_5", "description": "codigo DIVIPOLA municipal debe tener 5 digitos"},
+    {"id": "no_nan", "description": "respuestas publicas no deben mostrar NaN o undefined"},
+    {"id": "secop_quality", "description": "ceros deben distinguir cero_verificado y posible_subregistro"}
+  ]
+}

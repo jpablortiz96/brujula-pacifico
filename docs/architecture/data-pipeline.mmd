@@ -1,0 +1,10 @@
+flowchart TD
+  Socrata[datos.gov.co Socrata] --> Ingesta[scripts/ingest-*.ts]
+  Ingesta --> Normaliza[Normalizacion y parsers]
+  Normaliza --> Divipola[Enriquecimiento DIVIPOLA]
+  Divipola --> Sector[Clasificacion sectorial]
+  Sector --> Valida[scripts/validate-*]
+  Valida --> DB[(Supabase PostgreSQL)]
+  DB --> RPC[Funciones RPC]
+  RPC --> Modulos[Dashboard, zonas, radar, agente, export, PDF]
+

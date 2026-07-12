@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"educacion_establecimientos","type":"object","properties":{"codigo_dane":{"type":["string","null"]},"codigo_municipio":{"type":["string","null"]},"nombre_estab":{"type":["string","null"]},"sector":{"type":["string","null"]},"total_matricula":{"type":["integer","null"]},"cantidad_sedes":{"type":["integer","null"]}}}

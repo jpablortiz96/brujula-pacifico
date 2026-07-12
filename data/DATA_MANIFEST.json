@@ -1,0 +1,59 @@
+[
+  {
+    "dataset_id": "jbjy-vk9h",
+    "nombre": "SECOP II - contratos electronicos",
+    "entidad": "Colombia Compra Eficiente",
+    "url": "https://www.datos.gov.co/resource/jbjy-vk9h.json",
+    "cobertura": "Pacifico colombiano filtrado por ingesta",
+    "fecha_corte": null,
+    "filas_reportadas": 189892,
+    "tabla_destino": "secop_contratos",
+    "script_ingesta": "scripts/ingest-secop.ts",
+    "transformaciones": ["normalizacion", "DIVIPOLA", "sector_inferido"],
+    "checksum": null,
+    "limitaciones": ["georreferenciacion municipal incompleta"]
+  },
+  {
+    "dataset_id": "hq2v-5umk",
+    "nombre": "Sisben IV",
+    "entidad": "DNP / Prosperidad Social",
+    "url": "https://www.datos.gov.co/resource/hq2v-5umk.json",
+    "cobertura": "Pacifico colombiano",
+    "fecha_corte": null,
+    "filas_reportadas": 70400,
+    "tabla_destino": "sisben_personas",
+    "script_ingesta": "scripts/ingest-sisben.ts",
+    "transformaciones": ["agregacion", "factor fex"],
+    "checksum": null,
+    "limitaciones": ["no publicar microdatos personales"]
+  },
+  {
+    "dataset_id": "cfw5-qzt5",
+    "nombre": "Establecimientos educativos",
+    "entidad": "Ministerio de Educacion Nacional",
+    "url": "https://www.datos.gov.co/resource/cfw5-qzt5.json",
+    "cobertura": "Pacifico colombiano",
+    "fecha_corte": null,
+    "filas_reportadas": 7325,
+    "tabla_destino": "educacion_establecimientos",
+    "script_ingesta": "scripts/ingest-educacion.ts",
+    "transformaciones": ["normalizacion DIVIPOLA"],
+    "checksum": null,
+    "limitaciones": ["inventario/snapshot"]
+  },
+  {
+    "dataset_id": "2kpj-cktv",
+    "nombre": "Lesiones fatales",
+    "entidad": "Medicina Legal",
+    "url": "https://www.datos.gov.co/resource/2kpj-cktv.json",
+    "cobertura": "Pacifico colombiano",
+    "fecha_corte": null,
+    "filas_reportadas": 8281,
+    "tabla_destino": "medicina_lesiones",
+    "script_ingesta": "scripts/ingest-medicina.ts",
+    "transformaciones": ["normalizacion municipio"],
+    "checksum": null,
+    "limitaciones": ["no todos los modulos filtran temporalmente este indicador"]
+  }
+]
+

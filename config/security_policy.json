@@ -1,0 +1,12 @@
+{
+  "secrets": {
+    "never_client": ["SUPABASE_SERVICE_ROLE_KEY", "ANTHROPIC_API_KEY", "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"],
+    "public_prefix_allowed": ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY", "NEXT_PUBLIC_APP_URL"]
+  },
+  "data": {
+    "no_personal_dumps": true,
+    "sisben_public_use": "aggregated_only",
+    "whatsapp_phone_storage": "server_side_session"
+  }
+}
+

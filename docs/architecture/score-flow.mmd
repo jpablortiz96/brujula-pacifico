@@ -1,0 +1,13 @@
+flowchart LR
+  I[Inversion per capita vulnerable] --> A[Baja inversion normalizada 40%]
+  V[Vulnerabilidad Sisbén/fex] --> B[Vulnerabilidad 30%]
+  H[Homicidios/violencia relativa] --> C[Violencia 30%]
+  G{Muestra Sisbén >= 30} -->|si| S[Score]
+  G -->|no| X[Requiere verificacion]
+  A --> S
+  B --> S
+  C --> S
+  Q[calidad_dato_secop] --> S
+  S --> R[Ranking]
+  S -. no causal .-> N[Revision publica]
+

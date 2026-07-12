@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+title: "BRUJULA"
+message: "Si usa este proyecto, cite el repositorio."
+type: software
+authors:
+  - family-names: "Ortiz"
+    given-names: "Juan Pablo"
+repository-code: "https://github.com/jpablortiz96/brujula-pacifico"
+license: "MIT"
+version: "0.4.0"
+date-released: "2026-07-11"
+abstract: "Sistema de inteligencia territorial abierta del Pacifico colombiano."
+
