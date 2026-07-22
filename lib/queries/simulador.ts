@@ -1,4 +1,6 @@
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getMunicipiosStats } from "@/lib/queries/dashboard";
+import { getIndicadoresMunicipio } from "@/lib/queries/indicadores";
 
 export type PosicionVsPares = "por_debajo" | "por_encima" | "en_promedio";
 
@@ -51,14 +53,7 @@ export async function getBenchmarkPares(
   // Pares regionales: municipios del mismo departamento con su contratación
   // (valor + contratos) y su población vulnerable.
   const [stats, munis] = await Promise.all([
-    sb.rpc("brujula_municipios_stats", {
-      p_departamento: depto,
-      p_fecha_inicio: null,
-      p_fecha_fin: null,
-      p_valor_min: null,
-      p_valor_max: null,
-      p_busqueda: null,
-    }),
+    getMunicipiosStats({ departamento: depto }),
     sb
       .from("municipios")
       .select("divipola, sisben_pob_vulnerable")
@@ -71,8 +66,7 @@ export async function getBenchmarkPares(
   }
 
   const perCapitas: number[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  for (const r of (stats.data as any[]) ?? []) {
+  for (const r of stats) {
     const d = String(r.divipola);
     if (d === divipola) continue; // excluir el propio municipio
     const contratos = num(r.contratos);
@@ -92,8 +86,8 @@ export async function construirEscenario(
 ): Promise<EscenarioSimulacion> {
   const sb = createAdminClient();
 
-  const [{ data: ind }, { data: muni }, benchmark] = await Promise.all([
-    sb.rpc("brujula_indicadores_municipio", { p_divipola: divipola }),
+  const [ind, { data: muni }, benchmark] = await Promise.all([
+    getIndicadoresMunicipio(divipola),
     sb
       .from("municipios")
       .select("divipola, nombre, departamento, sisben_pob_vulnerable")
@@ -102,7 +96,7 @@ export async function construirEscenario(
     getBenchmarkPares(divipola),
   ]);
 
-  const i = (ind as Record<string, unknown>) || {};
+  const i = ind;
   const nombre = muni?.nombre ?? divipola;
   const departamento = muni?.departamento ?? "";
   const inversionActual = num(i.valor_contratos);

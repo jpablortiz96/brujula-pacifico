@@ -3,6 +3,7 @@ import {
   listarMunicipiosConDatos,
   getMunicipioComparable,
 } from "@/lib/queries/comparador";
+import { DATA_CACHE_HEADERS } from "@/lib/http/data-cache";
 
 export const runtime = "nodejs";
 
@@ -17,10 +18,10 @@ export async function GET(req: NextRequest) {
         getMunicipioComparable(a),
         getMunicipioComparable(b),
       ]);
-      return NextResponse.json({ a: ma, b: mb });
+      return NextResponse.json({ a: ma, b: mb }, { headers: DATA_CACHE_HEADERS });
     }
     const municipios = await listarMunicipiosConDatos();
-    return NextResponse.json({ municipios });
+    return NextResponse.json({ municipios }, { headers: DATA_CACHE_HEADERS });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     return NextResponse.json(

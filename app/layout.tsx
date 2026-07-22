@@ -11,6 +11,8 @@ const inter = Inter({
   display: "swap",
 });
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
 export const metadata: Metadata = {
   title: "BRÚJULA — Inteligencia Territorial del Pacífico",
   description:
@@ -41,6 +43,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${inter.variable} h-full`}>
+      <head>
+        {supabaseUrl && <link rel="preconnect" href={supabaseUrl} crossOrigin="anonymous" />}
+      </head>
       <body className="min-h-full bg-[rgb(244_242_236)] text-[rgb(10_37_64)] antialiased">
         {/* El chrome (header/footer) lo aporta cada vista: la landing su propio
             footer; los módulos su GovHeader. El layout solo provee el shell. */}

@@ -10,10 +10,11 @@ import FilaComparativa, {
 import BotonBrief from "@/components/brujula/BotonBrief";
 import BotonExportar from "@/components/brujula/BotonExportar";
 import { useRol } from "@/lib/context/RolContext";
-import type {
-  MunicipioComparable,
-  MunicipioLista,
-} from "@/lib/queries/comparador";
+import {
+  getMunicipiosEstaticos,
+  type MunicipioSeleccionable,
+} from "@/lib/data/municipios-estaticos";
+import type { MunicipioComparable, MunicipioLista } from "@/lib/queries/comparador";
 
 // Comparaciones sugeridas con contraste fuerte (guían al usuario a
 // comparaciones con sustancia). Códigos DIVIPOLA reales verificados.
@@ -124,7 +125,9 @@ export default function ComparadorClient() {
   const { rol } = useRol();
   const ciudadano = rol === "ciudadano";
 
-  const [municipios, setMunicipios] = useState<MunicipioLista[]>([]);
+  const [municipios, setMunicipios] = useState<MunicipioSeleccionable[]>(
+    getMunicipiosEstaticos
+  );
   const [selA, setSelA] = useState<string | null>("52835"); // Tumaco
   const [selB, setSelB] = useState<string | null>("76001"); // Cali
   const [datA, setDatA] = useState<MunicipioComparable | null>(null);

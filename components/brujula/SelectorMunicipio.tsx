@@ -1,10 +1,10 @@
 "use client";
 
 import { ChevronDown, Loader2 } from "lucide-react";
-import type { MunicipioLista } from "@/lib/queries/comparador";
+import type { MunicipioSeleccionable } from "@/lib/data/municipios-estaticos";
 
 interface Props {
-  municipios: MunicipioLista[];
+  municipios: MunicipioSeleccionable[];
   value: string | null;
   onChange: (divipola: string) => void;
   label: string;
@@ -14,7 +14,8 @@ interface Props {
 
 const NUM = new Intl.NumberFormat("es-CO");
 
-function etiqueta(m: MunicipioLista): string {
+function etiqueta(m: MunicipioSeleccionable): string {
+  if (m.contratos == null) return `${m.nombre} â€” ${m.departamento}`;
   const sufijo =
     m.contratos > 0 ? `(${NUM.format(m.contratos)})` : "(sin contratos)";
   return `${m.nombre} — ${m.departamento} ${sufijo}`;

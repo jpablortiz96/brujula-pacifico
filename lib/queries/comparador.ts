@@ -1,4 +1,6 @@
+import { unstable_cache } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getIndicadoresMunicipio } from "@/lib/queries/indicadores";
 
 export type CalidadSecop = "ok" | "posible_subregistro" | "cero_verificado";
 
@@ -69,7 +71,7 @@ async function conteoContratosPorMunicipio(
   return mapa;
 }
 
-export async function listarMunicipiosConDatos(): Promise<MunicipioLista[]> {
+async function listarMunicipiosConDatosLegacy(): Promise<MunicipioLista[]> {
   const sb = createAdminClient();
   const [{ data: munis }, conteo] = await Promise.all([
     sb.from("municipios").select("divipola, nombre, departamento"),
@@ -99,6 +101,50 @@ export async function listarMunicipiosConDatos(): Promise<MunicipioLista[]> {
   return lista;
 }
 
+async function listarMunicipiosConDatosUncached(): Promise<MunicipioLista[]> {
+  const sb = createAdminClient();
+  const { data, error } = await sb.rpc("brujula_municipios_con_datos");
+
+  // La ruta queda disponible mientras se aplica el script SQL en Supabase.
+  if (error) {
+    if (error.code === "PGRST202" || error.code === "42883") {
+      return listarMunicipiosConDatosLegacy();
+    }
+    throw error;
+  }
+
+  const lista = ((data as { divipola: string; nombre: string; departamento: string; contratos: number }[]) ?? []).map(
+    (municipio) => {
+      const contratos = num(municipio.contratos);
+      return {
+        divipola: municipio.divipola,
+        nombre: municipio.nombre,
+        departamento: municipio.departamento,
+        contratos,
+        tiene_datos_ricos: contratos > UMBRAL_DATOS_RICOS,
+      };
+    }
+  );
+
+  lista.sort((a, b) => {
+    if (a.tiene_datos_ricos !== b.tiene_datos_ricos)
+      return a.tiene_datos_ricos ? -1 : 1;
+    if (a.tiene_datos_ricos) return b.contratos - a.contratos;
+    return a.nombre.localeCompare(b.nombre, "es");
+  });
+  return lista;
+}
+
+const listarMunicipiosConDatosCached = unstable_cache(
+  listarMunicipiosConDatosUncached,
+  ["municipios-con-datos"],
+  { revalidate: 3600, tags: ["datos", "secop"] }
+);
+
+export async function listarMunicipiosConDatos(): Promise<MunicipioLista[]> {
+  return listarMunicipiosConDatosCached();
+}
+
 // ─── Calidad del dato SECOP (misma lógica que v4) ────────────────────────
 async function calidadSecop(
   sb: ReturnType<typeof createAdminClient>,
@@ -123,19 +169,19 @@ export async function getMunicipioComparable(
   divipola: string
 ): Promise<MunicipioComparable | null> {
   const sb = createAdminClient();
-  const { data: ind } = await sb.rpc("brujula_indicadores_municipio", {
-    p_divipola: divipola,
-  });
-  const { data: muni } = await sb
-    .from("municipios")
-    .select("divipola, nombre, departamento, sisben_pob_vulnerable")
-    .eq("divipola", divipola)
-    .single();
+  const [ind, { data: muni }] = await Promise.all([
+    getIndicadoresMunicipio(divipola),
+    sb
+      .from("municipios")
+      .select("divipola, nombre, departamento, sisben_pob_vulnerable")
+      .eq("divipola", divipola)
+      .single(),
+  ]);
   if (!muni) return null;
 
   // Nombres REALES del jsonb: contratos, valor_contratos, estab_total,
   // sisben_registros, sisben_vulnerables, homicidios.
-  const i = (ind as Record<string, unknown>) || {};
+  const i = ind;
   const vulnerables = num(i.sisben_vulnerables);
   const muestra = num(i.sisben_registros);
   const valor = num(i.valor_contratos);

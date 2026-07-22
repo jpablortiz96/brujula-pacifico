@@ -6,7 +6,10 @@ import SelectorMunicipio from "@/components/brujula/SelectorMunicipio";
 import SimuladorSlider from "@/components/brujula/SimuladorSlider";
 import ResultadoSimulacion from "@/components/brujula/ResultadoSimulacion";
 import { useRol } from "@/lib/context/RolContext";
-import type { MunicipioLista } from "@/lib/queries/comparador";
+import {
+  getMunicipiosEstaticos,
+  type MunicipioSeleccionable,
+} from "@/lib/data/municipios-estaticos";
 import type { EscenarioSimulacion } from "@/lib/queries/simulador";
 
 const clamp = (n: number, min: number, max: number) =>
@@ -48,7 +51,9 @@ function recomputar(
 export default function SimuladorClient() {
   const { rol } = useRol();
 
-  const [municipios, setMunicipios] = useState<MunicipioLista[]>([]);
+  const [municipios, setMunicipios] = useState<MunicipioSeleccionable[]>(
+    getMunicipiosEstaticos
+  );
   const [divipola, setDivipola] = useState<string | null>("52835"); // Tumaco
   const [base, setBase] = useState<EscenarioSimulacion | null>(null);
   const [inversion, setInversion] = useState(0);

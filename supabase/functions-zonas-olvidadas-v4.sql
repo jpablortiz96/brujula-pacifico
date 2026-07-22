@@ -48,20 +48,40 @@ returns table (
     from secop_contratos
     group by departamento
   ),
+  secop_agg as (
+    select
+      codigo_municipio,
+      count(*)::bigint as contratos,
+      coalesce(sum(valor_contrato), 0)::numeric as valor_secop
+    from secop_contratos
+    group by codigo_municipio
+  ),
+  sisben_agg as (
+    select
+      codigo_municipio,
+      count(*)::bigint as sisben_muestra
+    from sisben_personas
+    group by codigo_municipio
+  ),
+  homicidios_agg as (
+    select
+      codigo_municipio,
+      count(*)::bigint as homicidios
+    from medicina_lesiones
+    where lower(coalesce(manera, '')) like '%homicidio%'
+    group by codigo_municipio
+  ),
   muni_stats as (
     select
       m.divipola,
       m.nombre,
       m.departamento,
-      coalesce(count(distinct s.id), 0) as contratos,
-      coalesce(sum(s.valor_contrato), 0) as valor_secop,
+      coalesce(s.contratos, 0)::bigint as contratos,
+      coalesce(s.valor_secop, 0)::numeric as valor_secop,
       coalesce(m.sisben_pob_total, 0) as pob_total,
       coalesce(m.sisben_pob_vulnerable, 0) as pob_vulnerable,
-      (select count(*) from sisben_personas sp
-       where sp.codigo_municipio = m.divipola) as sisben_muestra,
-      (select count(*) from medicina_lesiones ml
-       where ml.codigo_municipio = m.divipola
-       and lower(coalesce(ml.manera,'')) like '%homicidio%') as homicidios,
+      coalesce(sb.sisben_muestra, 0)::bigint as sisben_muestra,
+      coalesce(h.homicidios, 0)::bigint as homicidios,
       -- fracción de contratos del depto sin geolocalizar
       case
         when coalesce(ds.total_depto, 0) > 0
@@ -69,11 +89,10 @@ returns table (
         else 0
       end as pct_sin_geo_depto
     from municipios m
-    left join secop_contratos s on s.codigo_municipio = m.divipola
+    left join secop_agg s on s.codigo_municipio = m.divipola
+    left join sisben_agg sb on sb.codigo_municipio = m.divipola
+    left join homicidios_agg h on h.codigo_municipio = m.divipola
     left join depto_secop ds on ds.departamento = m.departamento
-    group by m.divipola, m.nombre, m.departamento,
-             m.sisben_pob_total, m.sisben_pob_vulnerable,
-             ds.total_depto, ds.sin_geo_depto
   ),
   scored as (
     select *,

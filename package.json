@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "benchmark:queries": "tsx scripts/benchmark-queries.ts",
+    "generar:municipios": "tsx scripts/generar-municipios-json.ts",
     "ingest:secop": "tsx scripts/ingest-secop.ts",
     "ingest:secop-nuevos": "tsx scripts/ingest-secop.ts --desde=2025-05-06",
     "seed:divipola": "tsx scripts/seed-divipola.ts",

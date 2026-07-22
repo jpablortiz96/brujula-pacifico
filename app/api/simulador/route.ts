@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { construirEscenario } from "@/lib/queries/simulador";
+import { DATA_CACHE_HEADERS } from "@/lib/http/data-cache";
 
 export const runtime = "nodejs";
 
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
       divipola,
       inversion != null && Number.isFinite(inversion) ? inversion : null
     );
-    return NextResponse.json(escenario);
+    return NextResponse.json(escenario, { headers: DATA_CACHE_HEADERS });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     return NextResponse.json(

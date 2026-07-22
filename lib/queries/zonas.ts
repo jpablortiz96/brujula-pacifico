@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export interface ZonaOlvidada {
@@ -31,7 +32,7 @@ export interface ZonaSinDatos {
   homicidios: number;
 }
 
-export async function getZonasOlvidadas(): Promise<ZonaOlvidada[]> {
+async function getZonasOlvidadasUncached(): Promise<ZonaOlvidada[]> {
   const sb = createAdminClient();
   const { data, error } = await sb.rpc("brujula_zonas_olvidadas_v4");
   if (error) throw error;
@@ -59,7 +60,17 @@ export async function getZonasOlvidadas(): Promise<ZonaOlvidada[]> {
   }));
 }
 
-export async function getZonasSinDatos(): Promise<ZonaSinDatos[]> {
+const getZonasOlvidadasCached = unstable_cache(
+  getZonasOlvidadasUncached,
+  ["zonas-olvidadas"],
+  { revalidate: 3600, tags: ["datos", "zonas"] }
+);
+
+export async function getZonasOlvidadas(): Promise<ZonaOlvidada[]> {
+  return getZonasOlvidadasCached();
+}
+
+async function getZonasSinDatosUncached(): Promise<ZonaSinDatos[]> {
   const sb = createAdminClient();
   const { data, error } = await sb.rpc("brujula_zonas_sin_datos");
   if (error) throw error;
@@ -74,7 +85,17 @@ export async function getZonasSinDatos(): Promise<ZonaSinDatos[]> {
   }));
 }
 
-export async function getZonasConCoordenadas(): Promise<ZonaConCoord[]> {
+const getZonasSinDatosCached = unstable_cache(
+  getZonasSinDatosUncached,
+  ["zonas-sin-datos"],
+  { revalidate: 3600, tags: ["datos", "zonas"] }
+);
+
+export async function getZonasSinDatos(): Promise<ZonaSinDatos[]> {
+  return getZonasSinDatosCached();
+}
+
+async function getZonasConCoordenadasUncached(): Promise<ZonaConCoord[]> {
   const zonas = await getZonasOlvidadas();
   const sb = createAdminClient();
   const divipolas = zonas.map((z) => z.divipola);
@@ -93,4 +114,14 @@ export async function getZonasConCoordenadas(): Promise<ZonaConCoord[]> {
     lat: coordMap.get(z.divipola)?.lat ?? null,
     lng: coordMap.get(z.divipola)?.lng ?? null,
   }));
+}
+
+const getZonasConCoordenadasCached = unstable_cache(
+  getZonasConCoordenadasUncached,
+  ["zonas-con-coordenadas"],
+  { revalidate: 3600, tags: ["datos", "zonas"] }
+);
+
+export async function getZonasConCoordenadas(): Promise<ZonaConCoord[]> {
+  return getZonasConCoordenadasCached();
 }

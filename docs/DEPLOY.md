@@ -43,6 +43,29 @@ npm run ingest:secop      # contratos SECOP II
    (la URL pública de Vercel) y, si se usa WhatsApp, las `TWILIO_*`.
 5. Deploy.
 
+## Cache y revalidacion de datos
+
+- Ejecutar `supabase/indices-performance.sql`,
+  `supabase/functions-municipios-con-datos.sql` y
+  `supabase/functions-zonas-olvidadas-v4.sql` despues de la ingesta. Las
+  funciones conservan los calculos existentes, pero agregan cada tabla una vez
+  en PostgreSQL en lugar de hacerlo por municipio.
+- Ejecutar `supabase/verificar-zonas-ranking.sql` inmediatamente despues. Un
+  resultado vacio confirma que las 20 zonas, sus scores y categorias son
+  identicos a la implementacion anterior.
+- Configurar `REVALIDATE_TOKEN` en Vercel con un valor aleatorio largo. No es
+  una variable publica.
+- Tras una ingesta, invalidar el cache de datos sin redesplegar:
+
+```bash
+curl -X POST https://<tu-dominio>/api/revalidate \
+  -H "Authorization: Bearer <REVALIDATE_TOKEN>"
+```
+
+Las rutas de datos usan una hora de cache CDN y sirven contenido anterior
+mientras Vercel revalida en segundo plano. No se aplica cache HTTP al agente,
+al PDF ni al webhook de WhatsApp.
+
 ## 4. Notas de producción
 
 - **Export PDF.** Usa `@sparticuz/chromium` + `puppeteer-core`, declarados en

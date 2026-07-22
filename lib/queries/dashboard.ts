@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { DashboardKPIs, MunicipioStats, ContratoSecop, DashboardFilters } from "@/types/brujula";
 
@@ -18,7 +19,22 @@ function applyFilters(query: any, f: DashboardFilters): any {
 }
 
 // ── KPIs via RPC — agregación 100% en Postgres ────────────────────────
-export async function getKPIs(filters: DashboardFilters): Promise<DashboardKPIs> {
+function serializeFilters(filters: DashboardFilters): string {
+  return JSON.stringify({
+    departamento: filters.departamento ?? null,
+    fechaInicio: filters.fechaInicio ?? null,
+    fechaFin: filters.fechaFin ?? null,
+    valorMin: filters.valorMin ?? null,
+    valorMax: filters.valorMax ?? null,
+    busqueda: filters.busqueda ?? null,
+  });
+}
+
+function deserializeFilters(serializedFilters: string): DashboardFilters {
+  return JSON.parse(serializedFilters) as DashboardFilters;
+}
+
+async function getKPIsUncached(filters: DashboardFilters): Promise<DashboardKPIs> {
   const sb = createAdminClient();
   const { data, error } = await sb.rpc("brujula_kpis", {
     p_departamento: filters.departamento ?? null,
@@ -42,8 +58,18 @@ export async function getKPIs(filters: DashboardFilters): Promise<DashboardKPIs>
   };
 }
 
+const getKPIsCached = unstable_cache(
+  async (serializedFilters: string) => getKPIsUncached(deserializeFilters(serializedFilters)),
+  ["dashboard-kpis"],
+  { revalidate: 3600, tags: ["datos", "secop"] }
+);
+
+export async function getKPIs(filters: DashboardFilters): Promise<DashboardKPIs> {
+  return getKPIsCached(serializeFilters(filters));
+}
+
 // ── Stats por municipio via RPC ───────────────────────────────────────
-export async function getMunicipiosStats(
+async function getMunicipiosStatsUncached(
   filters: DashboardFilters
 ): Promise<MunicipioStats[]> {
   const sb = createAdminClient();
@@ -67,6 +93,19 @@ export async function getMunicipiosStats(
     contratos:   Number(r.contratos   ?? 0),
     valor_total: Number(r.valor_total  ?? 0),
   }));
+}
+
+const getMunicipiosStatsCached = unstable_cache(
+  async (serializedFilters: string) =>
+    getMunicipiosStatsUncached(deserializeFilters(serializedFilters)),
+  ["dashboard-municipios"],
+  { revalidate: 3600, tags: ["datos", "secop"] }
+);
+
+export async function getMunicipiosStats(
+  filters: DashboardFilters
+): Promise<MunicipioStats[]> {
+  return getMunicipiosStatsCached(serializeFilters(filters));
 }
 
 // ── Contratos paginados (sigue usando PostgREST directo) ──────────────

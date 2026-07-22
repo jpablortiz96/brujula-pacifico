@@ -4,6 +4,7 @@ import {
   getCruceSectorial,
   getRangoFechasMunicipio,
 } from "@/lib/queries/sectores";
+import { DATA_CACHE_HEADERS } from "@/lib/http/data-cache";
 
 export const runtime = "nodejs";
 
@@ -20,11 +21,11 @@ export async function GET(req: NextRequest) {
         getGastoPorSector(divipola, fechaInicio, fechaFin),
         getRangoFechasMunicipio(divipola),
       ]);
-      return NextResponse.json({ sectores, rango });
+      return NextResponse.json({ sectores, rango }, { headers: DATA_CACHE_HEADERS });
     }
     if (sector) {
       const municipios = await getCruceSectorial(sector, fechaInicio, fechaFin);
-      return NextResponse.json({ municipios });
+      return NextResponse.json({ municipios }, { headers: DATA_CACHE_HEADERS });
     }
     return NextResponse.json({ error: "Falta divipola o sector" }, { status: 400 });
   } catch (err) {

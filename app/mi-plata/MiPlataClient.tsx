@@ -10,15 +10,19 @@ import { colorSector } from "@/lib/clasificacion/colores";
 import { formatearMonedaLegible } from "@/lib/formato";
 import { formatNum } from "@/lib/zonas-ui";
 import { toCSV } from "@/lib/export/open-data";
-import type { MunicipioLista } from "@/lib/queries/comparador";
+import {
+  getMunicipiosEstaticos,
+  type MunicipioSeleccionable,
+} from "@/lib/data/municipios-estaticos";
 import type { GastoSector } from "@/lib/queries/sectores";
 
 export default function MiPlataClient() {
   const { rol } = useRol();
   const money = (v: number | null | undefined) => formatearMonedaLegible(v, rol);
 
-  const [municipios, setMunicipios] = useState<MunicipioLista[]>([]);
-  const [loadingMunis, setLoadingMunis] = useState(true);
+  const [municipios, setMunicipios] = useState<MunicipioSeleccionable[]>(
+    getMunicipiosEstaticos
+  );
   const [divipola, setDivipola] = useState<string | null>("52835"); // Tumaco
   const [periodo, setPeriodo] = useState<Periodo>({ fechaInicio: null, fechaFin: null });
   const [sectores, setSectores] = useState<GastoSector[]>([]);
@@ -36,8 +40,6 @@ export default function MiPlataClient() {
         if (!cancel) setMunicipios(json.municipios ?? []);
       } catch {
         /* silencioso */
-      } finally {
-        if (!cancel) setLoadingMunis(false);
       }
     })();
     return () => {
@@ -116,7 +118,7 @@ export default function MiPlataClient() {
         </p>
       </div>
 
-      <SelectorMunicipio municipios={municipios} value={divipola} onChange={setDivipola} label="Municipio" loading={loadingMunis} />
+      <SelectorMunicipio municipios={municipios} value={divipola} onChange={setDivipola} label="Municipio" />
       <FiltroPeriodo fechaInicio={periodo.fechaInicio} fechaFin={periodo.fechaFin} onChange={setPeriodo} rango={rango} />
 
       {error && (
@@ -127,7 +129,7 @@ export default function MiPlataClient() {
 
       {!divipola ? (
         <EmptyState texto="Selecciona un municipio para ver el desglose." />
-      ) : loading || loadingMunis ? (
+      ) : loading ? (
         <div className="p-8 text-center animate-pulse text-gov-muted" style={{ fontSize: 13 }}>Cargando desglose…</div>
       ) : sectores.length === 0 || totalValor === 0 ? (
         <EmptyState

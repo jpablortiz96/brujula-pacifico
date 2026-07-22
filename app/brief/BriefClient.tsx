@@ -4,7 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { ChevronRight, FileText, Check } from "lucide-react";
 import SelectorMunicipio from "@/components/brujula/SelectorMunicipio";
 import BotonBrief from "@/components/brujula/BotonBrief";
-import type { MunicipioLista } from "@/lib/queries/comparador";
+import {
+  getMunicipiosEstaticos,
+  type MunicipioSeleccionable,
+} from "@/lib/data/municipios-estaticos";
 
 type TipoBrief = "municipio" | "zona_olvidada";
 
@@ -22,7 +25,9 @@ const SECCIONES = [
 ];
 
 export default function BriefClient() {
-  const [municipios, setMunicipios] = useState<MunicipioLista[]>([]);
+  const [municipios, setMunicipios] = useState<MunicipioSeleccionable[]>(
+    getMunicipiosEstaticos
+  );
   const [divipola, setDivipola] = useState<string | null>(null);
   const [tipo, setTipo] = useState<TipoBrief>("municipio");
 

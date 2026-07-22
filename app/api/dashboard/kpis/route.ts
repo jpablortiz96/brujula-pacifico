@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getKPIs } from "@/lib/queries/dashboard";
+import { DATA_CACHE_HEADERS } from "@/lib/http/data-cache";
 import type { DashboardFilters } from "@/types/brujula";
 
 export const runtime = "nodejs";
@@ -16,7 +17,7 @@ export async function GET(req: NextRequest) {
       busqueda:     sp.get("busqueda")     || null,
     };
     const data = await getKPIs(filters);
-    return NextResponse.json(data);
+    return NextResponse.json(data, { headers: DATA_CACHE_HEADERS });
   } catch (err) {
     console.error("[api/dashboard/kpis]", err);
     return NextResponse.json({ error: "Internal" }, { status: 500 });

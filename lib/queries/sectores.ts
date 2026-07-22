@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export interface GastoSector {
@@ -24,7 +25,7 @@ const num = (v: unknown): number => {
   return Number.isFinite(n) ? n : 0;
 };
 
-export async function getGastoPorSector(
+async function getGastoPorSectorUncached(
   divipola: string,
   fechaInicio?: string | null,
   fechaFin?: string | null
@@ -45,13 +46,27 @@ export async function getGastoPorSector(
   }));
 }
 
+const getGastoPorSectorCached = unstable_cache(
+  getGastoPorSectorUncached,
+  ["gasto-por-sector"],
+  { revalidate: 3600, tags: ["datos", "sectores"] }
+);
+
+export async function getGastoPorSector(
+  divipola: string,
+  fechaInicio?: string | null,
+  fechaFin?: string | null
+): Promise<GastoSector[]> {
+  return getGastoPorSectorCached(divipola, fechaInicio ?? null, fechaFin ?? null);
+}
+
 export interface RangoFechas {
   min: string | null;
   max: string | null;
   total: number;
 }
 
-export async function getRangoFechasMunicipio(divipola: string): Promise<RangoFechas> {
+async function getRangoFechasMunicipioUncached(divipola: string): Promise<RangoFechas> {
   const sb = createAdminClient();
   const { data, error } = await sb.rpc("brujula_rango_fechas_municipio", { p_divipola: divipola });
   if (error) {
@@ -66,6 +81,16 @@ export async function getRangoFechasMunicipio(divipola: string): Promise<RangoFe
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const r = (data as any[])?.[0] ?? {};
   return { min: r.fecha_min ?? null, max: r.fecha_max ?? null, total: num(r.total) };
+}
+
+const getRangoFechasMunicipioCached = unstable_cache(
+  getRangoFechasMunicipioUncached,
+  ["rango-fechas-municipio"],
+  { revalidate: 3600, tags: ["datos", "sectores"] }
+);
+
+export async function getRangoFechasMunicipio(divipola: string): Promise<RangoFechas> {
+  return getRangoFechasMunicipioCached(divipola);
 }
 
 export async function getCruceSectorial(
